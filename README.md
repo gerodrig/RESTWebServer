@@ -19,3 +19,5 @@ npx tsc --init --outDir dist/ --rootDir src
 "build": "rimraf ./dist && tsc",
 "start": "npm run build && node dits/app.js"
 ```
+
+4. Execute the command ```docker compose up -d``` to run the postgres container. 

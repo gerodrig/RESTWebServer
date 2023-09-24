@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+enum Days {
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+  sunday
+}
+
+model Habit {
+  id             Int       @id @default(autoincrement())
+  userName       String    @db.VarChar
+  title          String    @db.VarChar
+  description    String    @db.VarChar
+  createdAt      DateTime? @default(now()) @db.Timestamp()
+  targetDays     Days[]    @default([])
+  currentStreak  Int       @default(0)
+  longestStreak  Int       @default(0)
+  completed      Boolean   @default(false)
+  timesCompleted Int       @default(0)
+  isActive       Boolean   @default(true)
+  reminders      Json[]
+  tags           Json[]
+  notes          Json[]
+  log            Json[]
+}
